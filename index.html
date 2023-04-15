@@ -22,7 +22,39 @@
 </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="application/json" src="static/script.js"></script>
+    <script>
+	$(document).ready(function() {
+  $('scan-form').submit(function(event) {
+    event.preventDefault();
+    console.log("sdfdfsdfdsfdsdfsfsdfsdfsddfs")
+    // Get input values
+    var formData = {
+	'ip_address': $('#ip-address').val(),
+	//'port_range': $('#port-range').val(),
+	'scan_type': $('#scan-type').val(),
+    }
+   fetch("http://localhost:8000/", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+                })
+                
+                .then(response => response.json())
+                .then(response => {
+
+                  console.log("testdcfdsfdvf"+response)
+                    $("#output-text").val(JSON.stringify(response));
+                
+                 })
+
+    
+
+  });
+});
+</script>
 </head>
 <body>
 
